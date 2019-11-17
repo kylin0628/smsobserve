@@ -3,7 +3,9 @@ package com.android.smsutil.smsinfo;
 import com.android.smsutil.bean.SmsEntity;
 import com.android.smsutil.dao.DaoUtil;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SmsListPresenter {
     SmsListModel model;
@@ -19,6 +21,15 @@ public class SmsListPresenter {
      */
     public  List<SmsEntity> select(int statu) {
         List<SmsEntity> smsEntities1 = DaoUtil.queryAllSmsByStatu(statu);
+        //去重
+        Set<SmsEntity> smss = new HashSet<>();
+        for (SmsEntity smsEntity : smsEntities1) {
+            smss.add(smsEntity);
+        }
+        smsEntities1.clear();
+        for (SmsEntity smsEntity : smss) {
+            smsEntities1.add(smsEntity);
+        }
         return smsEntities1;
     }
 }

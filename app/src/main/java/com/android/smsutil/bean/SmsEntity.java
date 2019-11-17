@@ -39,7 +39,6 @@ public class SmsEntity implements Serializable {
     @Override
     public String toString() {
         return "SmsEntity{" +
-                "id=" + id +
                 ", from='" + from + '\'' +
                 ", content='" + content + '\'' +
                 ", receive_time=" + receive_time +
@@ -109,6 +108,17 @@ public class SmsEntity implements Serializable {
     }
 
 
+    @Override
+    public boolean equals( Object obj) {
+        if (obj == null)
+            return false;
+        if (this == obj)
+            return true;
+       return this.toString().equals(obj.toString());
+    }
 
-
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
+    }
 }
