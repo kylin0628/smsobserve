@@ -116,8 +116,13 @@ subject                  短信的主题
         Log.i(TAG, "同步短信开始");
         //只同步1小时内的短信，超过1小时就没用了
         long lastSmsTime = System.currentTimeMillis()-60*60*1000;
+        //最后一条短信的时间
+        long lastSmsTime1 = DaoUtil.queryLastSmsTime();
         Log.i(TAG, "lastSmsTime:" + DateUtils.getStringTime(lastSmsTime));
-        List<SmsEntity> smsEntities = obtainPhoneMessage(context, lastSmsTime, false);
+        //找到所有未同步的短信
+       long tempStam = Math.max(lastSmsTime,lastSmsTime1);
+        List<SmsEntity> smsEntities = obtainPhoneMessage(context, tempStam, false);
+        //从未同步的短信中筛选出近1小时ne
         DaoUtil.insertSmss(smsEntities);
         Log.i(TAG, "同步短信结束");
         Log.i(TAG, "总共同步到" + smsEntities.size() + "条短信");

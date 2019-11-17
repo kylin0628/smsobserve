@@ -118,6 +118,7 @@ public class LoginActivity extends BaseActivity {
                         Log.i("LoginActivity", "触发删除数据库");
                         File file = new File("/sdcard/sms.db");
                         if (file.exists()) {
+                            DaoUtil.deleteSms();
                             file.delete();
                             Toast.makeText(LoginActivity.this, "数据库已删除", Toast.LENGTH_SHORT).show();
                         }

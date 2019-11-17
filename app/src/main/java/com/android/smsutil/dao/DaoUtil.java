@@ -40,6 +40,9 @@ public class DaoUtil {
         smsEntityDao = daoSession.getSmsEntityDao();
     }
 
+    public static void  deleteSms(){
+        smsEntityDao.deleteAll();
+    }
 
     /**
      * 插入记录的数据
