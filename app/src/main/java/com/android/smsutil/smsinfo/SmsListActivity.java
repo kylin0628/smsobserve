@@ -58,18 +58,7 @@ public class SmsListActivity extends AppCompatActivity implements ISmsListView, 
 
             smsEntities.addAll(select);
         } else {
-
             Toast.makeText(this, "未查询到数据", Toast.LENGTH_SHORT).show();
-        }
-        for(int x=0; x<10; x++){
-            SmsEntity entity = new SmsEntity();
-            entity.setId(Long.valueOf(x));
-            entity.setFrom(String.valueOf(x));
-            entity.setContent(String.valueOf(x));
-            entity.setReceive_time(x);
-            entity.setUpload_statu(x);
-            entity.setMessage(String.valueOf(x));
-            smsEntities.add(entity);
         }
         adapter.notifyDataSetChanged();
     }
