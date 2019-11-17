@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sms_upload_statu">
+        <item>全部</item>
+        <item>未上传</item>
+        <item>上传成功 </item>
+        <item>上传失败</item>
+    </string-array>
+</resources>

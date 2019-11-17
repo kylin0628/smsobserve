@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <TextView android:id="@+id/item_id"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:textColor="#333333"/>
+    <TextView android:id="@+id/item_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:textColor="#333333"/>
+    <TextView android:id="@+id/item_true_amout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:textColor="#333333"/>
+    <TextView android:id="@+id/item_trade_sn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:textColor="#333333"/>
+    <TextView android:id="@+id/item_trade_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:textColor="#333333"/>
+    <TextView android:id="@+id/item_card_no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        android:textColor="#333333"/>
+    <TextView android:id="@+id/item_pay_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:textColor="#333333"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#0000ff"></View>
+</LinearLayout>

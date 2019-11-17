@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@mipmap/bg_green">
+
+    <TextView
+        android:id="@+id/tv_current_landid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="18sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/on_key_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/color_progressbar"
+            android:layout_weight="1"
+            android:textColor="#ffffff"
+            android:text="一键上传" />
+
+        <Button
+            android:id="@+id/btn_see_sms"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/color_progressbar"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:text="查看短信"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/on_key_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/color_progressbar"
+            android:layout_weight="1"
+            android:textColor="#ffffff"
+            android:text="一键删除" />
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/lv_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

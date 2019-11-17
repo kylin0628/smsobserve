@@ -1,0 +1,67 @@
+apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.android.smsutil"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 10108
+        versionName "1.1.08"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+android.applicationVariants.all {
+    variant ->
+        variant.outputs.all {
+            //这里修改apk文件名
+//                outputFileName = "${variant.name}-v${variant.versionName}.apk"
+            outputFileName = "短信监听-v${variant.versionName}.apk"
+        }
+}
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.0.0'
+    }
+
+}
+
+greendao {
+    schemaVersion 5
+    daoPackage 'com.anye.greendao.gen'
+    targetGenDir 'src/main/java'
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar','*.aar'], dir: 'libs')
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation 'junit:junit:4.12'
+    implementation 'org.java-websocket:Java-WebSocket:1.3.0'
+    implementation 'org.greenrobot:greendao:3.0.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+    implementation 'com.zhy:okhttputils:2.6.2'
+    implementation 'pub.devrel:easypermissions:2.0.1'
+    implementation 'com.zhy:base-adapter:3.0.3'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    //    implementation 'com.android.support:appcompat-v4:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.14'
+}
