@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@mipmap/bg_blue"
+    android:background="#FFE8EEEF"
     tools:context=".smsinfo.SmsListActivity">
 
     <LinearLayout
@@ -25,7 +25,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#0000ff"></View>
+        android:background="#E8EEEF"></View>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sms_list_rl"
         android:layout_width="match_parent"
