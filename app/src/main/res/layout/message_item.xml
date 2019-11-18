@@ -61,7 +61,6 @@
         android:maxLines="1"
         android:textColor="#ff0000"
         android:paddingRight="5dp"
-        android:text="这条错误信息太长了"
         android:textSize="16sp"
         android:gravity="right"
         app:layout_constraintBottom_toBottomOf="@+id/item_message_receive_time"

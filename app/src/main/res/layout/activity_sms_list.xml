@@ -25,7 +25,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:background="#E8EEEF"></View>
+        android:background="#0000ff"></View>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sms_list_rl"
         android:layout_width="match_parent"
