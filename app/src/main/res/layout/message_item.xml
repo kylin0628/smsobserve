@@ -60,14 +60,12 @@
         android:layout_marginLeft="8dp"
         android:maxLines="1"
         android:textColor="#ff0000"
-        android:paddingRight="5dp"
         android:textSize="16sp"
         android:gravity="right"
         app:layout_constraintBottom_toBottomOf="@+id/item_message_receive_time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/item_message_from_address"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/item_message_receive_time" />
+        app:layout_constraintRight_toRightOf="parent"/>
 
     <View
         android:layout_width="match_parent"
