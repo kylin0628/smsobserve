@@ -45,6 +45,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private Button onKeyDelete;
     private LoginEntity loginEntity;
     private MyBroadCast broadCast;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +85,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         getSuccessList(0);
         // Android 8.0使用startForegroundService在前台启动新服务
+        intent = new Intent(MainActivity.this, MyService.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(new Intent(MainActivity.this, MyService.class));
+            startForegroundService(intent);
         } else {
-            startService(new Intent(MainActivity.this, MyService.class));
+            startService(intent);
         }
     }
 
