@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/smsutils-smsObserve.iml" filepath="$PROJECT_DIR$/smsutils-smsObserve.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/smsobserve.iml" filepath="$PROJECT_DIR$/.idea/smsobserve.iml" />
     </modules>
   </component>
 </project>

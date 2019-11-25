@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import okhttp3.MediaType;
 import okhttp3.Response;
 
 /**
@@ -76,9 +77,14 @@ public class HttpUtils {
     public Result<MsgRspEntity> sendMsg(SmsReqBean smsReqBean) {
         Result<MsgRspEntity> result = new Result<>();
         try {
-            Response response = OkHttpUtils.post().url(URL_UPLOAD_MESSAGE)
-                    .addParams("data", gson.toJson(smsReqBean))
-                    .build().execute();
+            Response response = OkHttpUtils.postString()
+                    .content(gson.toJson(smsReqBean))
+                    .mediaType(MediaType.parse("application/json; charset=utf-8"))
+                    .build()
+                    .execute();
+//            Response response = OkHttpUtils.post().url(URL_UPLOAD_MESSAGE)
+//                    .addParams("data", gson.toJson(smsReqBean))
+//                    .build().execute();
             if (response.isSuccessful()) {
                 Type type = new TypeToken<Result<MsgRspEntity>>() {
                 }.getType();
@@ -116,7 +122,7 @@ public class HttpUtils {
                     Type type = new TypeToken<Result<LoginEntity>>() {
                     }.getType();
                     result = gson.fromJson(string, type);
-                }else {
+                } else {
                     result.setMessage(object.optString("message"));
                     result.setCode(object.optString("code"));
                 }
@@ -206,5 +212,4 @@ public class HttpUtils {
 
         return result;
     }
-
 }

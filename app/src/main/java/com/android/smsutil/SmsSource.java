@@ -194,6 +194,7 @@ subject                  短信的主题
 
                 });
             }
+            executorService.shutdown();
         }else {
             listener.onComplete(Constants.UPLOAD_COMPLETE_STATU_NO_SMS);
         }

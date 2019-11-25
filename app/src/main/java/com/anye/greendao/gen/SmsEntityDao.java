@@ -22,7 +22,7 @@ public class SmsEntityDao extends AbstractDao<SmsEntity, Long> {
     /**
      * Properties of entity SmsEntity.<br/>
      * Can be used for QueryBuilder and for referencing column names.
-    */
+     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property From = new Property(1, String.class, "from", false, "FROM");
@@ -30,7 +30,7 @@ public class SmsEntityDao extends AbstractDao<SmsEntity, Long> {
         public final static Property Receive_time = new Property(3, long.class, "receive_time", false, "RECEIVE_TIME");
         public final static Property Upload_statu = new Property(4, int.class, "upload_statu", false, "UPLOAD_STATU");
         public final static Property Message = new Property(5, String.class, "message", false, "MESSAGE");
-    };
+    }
 
 
     public SmsEntityDao(DaoConfig config) {
@@ -154,6 +154,11 @@ public class SmsEntityDao extends AbstractDao<SmsEntity, Long> {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public boolean hasKey(SmsEntity entity) {
+        return entity.getId() != null;
     }
 
     @Override

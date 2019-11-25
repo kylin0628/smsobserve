@@ -22,11 +22,11 @@ public class RecordBeanDao extends AbstractDao<RecordBean, Long> {
     /**
      * Properties of entity RecordBean.<br/>
      * Can be used for QueryBuilder and for referencing column names.
-    */
+     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Info = new Property(1, String.class, "info", false, "info");
-    };
+    }
 
 
     public RecordBeanDao(DaoConfig config) {
@@ -114,6 +114,11 @@ public class RecordBeanDao extends AbstractDao<RecordBean, Long> {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public boolean hasKey(RecordBean entity) {
+        return entity.getId() != null;
     }
 
     @Override

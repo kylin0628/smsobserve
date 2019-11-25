@@ -56,9 +56,9 @@ public class DaoSession extends AbstractDaoSession {
     }
     
     public void clear() {
-        lastOrderBeanDaoConfig.getIdentityScope().clear();
-        recordBeanDaoConfig.getIdentityScope().clear();
-        smsEntityDaoConfig.getIdentityScope().clear();
+        lastOrderBeanDaoConfig.clearIdentityScope();
+        recordBeanDaoConfig.clearIdentityScope();
+        smsEntityDaoConfig.clearIdentityScope();
     }
 
     public LastOrderBeanDao getLastOrderBeanDao() {

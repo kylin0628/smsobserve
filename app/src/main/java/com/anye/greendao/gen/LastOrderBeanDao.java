@@ -22,11 +22,11 @@ public class LastOrderBeanDao extends AbstractDao<LastOrderBean, Long> {
     /**
      * Properties of entity LastOrderBean.<br/>
      * Can be used for QueryBuilder and for referencing column names.
-    */
+     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property TradeNo = new Property(1, String.class, "tradeNo", false, "tradeNo");
-    };
+    }
 
 
     public LastOrderBeanDao(DaoConfig config) {
@@ -114,6 +114,11 @@ public class LastOrderBeanDao extends AbstractDao<LastOrderBean, Long> {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public boolean hasKey(LastOrderBean entity) {
+        return entity.getId() != null;
     }
 
     @Override
