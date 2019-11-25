@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -59,6 +60,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unregisterReceiver(broadCast);
     }
 
     private void initBroadCast() {
@@ -80,9 +82,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             String text = "姓名:%1s\n手机号:%2s\n银行名称:%3s\n银行卡号:%4s";
             tv_current_landid.setText(String.format(text, loginEntity.getTruename(), loginEntity.getMobile(), loginEntity.getBankname(), loginEntity.getCardnumber()));
         }
-
         getSuccessList(0);
-        startService(new Intent(MainActivity.this, MyService.class));
+        // Android 8.0使用startForegroundService在前台启动新服务
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(new Intent(MainActivity.this, MyService.class));
+        } else {
+            startService(new Intent(MainActivity.this, MyService.class));
+        }
     }
 
     private List<SuccessBean> data = new ArrayList<>();

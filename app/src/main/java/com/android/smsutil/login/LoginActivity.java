@@ -197,6 +197,7 @@ public class LoginActivity extends BaseActivity {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.putExtra("loginEntity", login.getData());
                             startActivity(intent);
+                            finish();
                         } else {
                             Toast.makeText(LoginActivity.this, login.getMessage(), Toast.LENGTH_SHORT).show();
                         }

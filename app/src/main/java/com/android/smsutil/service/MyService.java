@@ -1,18 +1,22 @@
 package com.android.smsutil.service;
 
-import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -29,14 +33,13 @@ import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import pub.devrel.easypermissions.EasyPermissions;
-
 /**
  * Created by Administrator on 2017/7/29.
  */
 
 public class MyService extends Service {
 
+    private static final String CHANNEL_ID = "1000";
     private Timer mTimer = null;
     private TimerTask mTimerTask = null;
     private Notification notification = null;
@@ -77,12 +80,14 @@ public class MyService extends Service {
     /**
      * 开启前台服务
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     void setForeground() {
         mNotification = initNotification();
         startForeground(NOTIFICATION_ID, mNotification);
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         try {
@@ -146,7 +151,7 @@ public class MyService extends Service {
 //                        }
 
                     }
-                    if (count%3600==0){
+                    if (count % 3600 == 0) {
                         //1小时登录续期
                         String acount = (String) SPUtil.get(getApplicationContext(), "phone", "");
                         HttpUtils.getInstance().loginGoon(acount);
@@ -180,15 +185,26 @@ public class MyService extends Service {
      *
      * @return
      */
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private Notification initNotification() {
-        if (notification == null) {
-            notification = new Notification.Builder(this.getApplicationContext()).
-                    setContentTitle("").
-                    setContentText("支付管家").
-                    setSmallIcon(R.mipmap.app_icon).
-                    setWhen(System.currentTimeMillis()).build();
-        }
-        return notification;
+        //设定的通知渠道名称
+        String channelName = "channel";
+        //设置通知的重要程度
+        int importance = NotificationManager.IMPORTANCE_MAX;
+        //构建通知渠道
+        @SuppressLint("WrongConstant") NotificationChannel channel = new NotificationChannel(CHANNEL_ID, channelName, importance);
+        //在创建的通知渠道上发送通知
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        builder.setSmallIcon(R.mipmap.app_icon) //设置通知图标
+                .setContentTitle("短信监听")//设置通知标题
+                .setContentText("支付管家")//设置通知内容
+                .setAutoCancel(true) //用户触摸时，自动关闭
+                .setWhen(System.currentTimeMillis())
+                .setOngoing(true);//设置处于运行状态
+        //向系统注册通知渠道，注册后不能改变重要性以及其他通知行为
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.createNotificationChannel(channel);
+        return builder.build();
     }
 
 
