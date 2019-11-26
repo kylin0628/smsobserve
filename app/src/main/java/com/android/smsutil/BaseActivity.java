@@ -1,18 +1,21 @@
 package com.android.smsutil;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import com.carlt.networklibs.NetworkManager;
 
 import java.util.List;
 
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class BaseActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks{
+public class BaseActivity extends AppCompatActivity implements EasyPermissions.PermissionCallbacks {
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        NetworkManager.getInstance().registerObserver(this);
     }
 
     @Override
@@ -33,11 +36,17 @@ public class BaseActivity extends AppCompatActivity implements EasyPermissions.P
         //授权失败
     }
 
-    public boolean hasPermission(String ...permission){
-        return EasyPermissions.hasPermissions(this,permission);
+    public boolean hasPermission(String... permission) {
+        return EasyPermissions.hasPermissions(this, permission);
     }
 
-    public void requestPermission(String toastStr,int requestCode,String ...permissions){
+    public void requestPermission(String toastStr, int requestCode, String... permissions) {
         EasyPermissions.requestPermissions(this, toastStr, requestCode, permissions);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        NetworkManager.getInstance().unRegisterObserver(this);
     }
 }

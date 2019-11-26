@@ -23,6 +23,8 @@ import com.android.smsutil.smsinfo.MyInfoAdapter;
 import com.android.smsutil.smsinfo.OnCompleteListener;
 import com.android.smsutil.smsinfo.SmsListActivity;
 import com.android.smsutil.utils.DateUtils;
+import com.carlt.networklibs.NetType;
+import com.carlt.networklibs.annotation.NetWork;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -157,6 +159,26 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.on_key_delete:
                 deleteSmss();
+                break;
+        }
+    }
+
+    @NetWork(netType = NetType.AUTO)
+    public void network(NetType netType) {
+        switch (netType) {
+            case WIFI:
+                Toast.makeText(this, "wifi", Toast.LENGTH_SHORT).show();
+                break;
+            case CMNET:
+            case CMWAP:
+                Toast.makeText(this, "数据网络", Toast.LENGTH_SHORT).show();
+                break;
+            case AUTO:
+                break;
+            case NONE:
+                Toast.makeText(this, "无网络", Toast.LENGTH_SHORT).show();
+                break;
+            default:
                 break;
         }
     }

@@ -27,6 +27,7 @@ import com.android.smsutil.SPUtil;
 import com.android.smsutil.SmsSource;
 import com.android.smsutil.bean.SmsEntity;
 import com.android.smsutil.smsinfo.OnCompleteListener;
+import com.carlt.networklibs.utils.NetworkUtils;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -113,15 +114,6 @@ public class MyService extends Service {
         startService(intent);
     }
 
-    /**
-     * 处理handler数据
-     */
-    private void hanlderData(Message msg) {
-
-    }
-
-
-
     void initTimer() {
         if (mTimer == null) {
             mTimer = new Timer();
@@ -131,7 +123,12 @@ public class MyService extends Service {
                     count += 1;
                     if (count % 10 == 0) {
 //                        Toast.makeText(MyService.this, "短信监控中...", Toast.LENGTH_SHORT).show();
-                        toast("短信监控中...");
+                        if (NetworkUtils.isAvailable()){
+                            toast("短信监控中...");
+                        }else {
+                            toast("网络不可用...");
+                            return;
+                        }
                     }
 
 
